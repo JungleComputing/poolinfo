@@ -1,6 +1,6 @@
 package ibis.poolInfo;
 
-import ibis.server.ServerProperties;
+import ibis.ipl.server.ServerProperties;
 import ibis.smartsockets.virtual.VirtualServerSocket;
 import ibis.smartsockets.virtual.VirtualSocket;
 import ibis.smartsockets.virtual.VirtualSocketFactory;
@@ -18,7 +18,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public final class Service implements ibis.server.Service, Runnable {
+public final class Service implements ibis.ipl.server.Service, Runnable {
 
     public static final int VIRTUAL_PORT = 301;
 

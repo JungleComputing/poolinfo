@@ -2,7 +2,7 @@
 
 package ibis.poolInfo;
 
-import ibis.server.Client;
+import ibis.ipl.server.Client;
 import ibis.smartsockets.direct.IPAddressSet;
 import ibis.smartsockets.virtual.VirtualSocket;
 import ibis.smartsockets.virtual.VirtualSocketAddress;

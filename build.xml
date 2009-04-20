@@ -6,28 +6,29 @@
     <!-- Global properties -->
     <property name="src" location="src" />
     <property name="tmp" location="tmp" />
-    <property name="lib" location="../../lib" />
-    <property name="javadoc" location="../../javadoc/poolinfo" />
-    <property name="sources" value="../../sources" />
+    <property name="lib" location="lib" />
+    <property name="javadoc" location="javadoc" />
+    <property name="sources" location="sources" />
+    <property name="sources-filename" value="poolinfo" />
 
-    <property name="version" value="-2.1.1" />
+    <property environment="env" />
+    <property name="ipl" location="${env.IPL_HOME}" />
+
+    <property name="version" value="-2.2" />
 
     <property name="jar" location="${lib}/${ant.project.name}${version}.jar" />
-    <property name="sources-filename" value="${ant.project.name}${version}" />
 
     <path id="external_jars">
-        <fileset dir="${lib}">
+	<fileset dir="${ipl}/lib">
             <include name="*.jar" />
         </fileset>
     </path>
 
-    <target name="build">
+    <target name="build" depends="clean">
         <!-- Create the time stamp -->
         <tstamp />
 
         <!-- Create the build directory structure used by compile -->
-        <delete dir="${tmp}" />
-        <delete dir="${javadoc}" />
 
         <mkdir dir="${tmp}" />
         <mkdir dir="${javadoc}" />
@@ -45,9 +46,10 @@
         <!-- create the javadoc -->
 	<javadoc packagenames="ibis.**" destdir="${javadoc}" access="public" sourcepath="${src}">
             <classpath refid="external_jars" />
-            <link href="http://logging.apache.org/log4j/docs/api/" />
             <link href="http://java.sun.com/j2se/1.5.0/docs/api/" />
         </javadoc>
+
+        <mkdir dir="${lib}" />
 
         <!-- Put everything in ${tmp} into the jar file -->
         <jar jarfile="${jar}" basedir="${tmp}">
@@ -56,13 +58,15 @@
             </manifest>
         </jar>
 
+	<mkdir dir="${sources}" />
+
         <!-- create a zip file with the sources -->
         <zip destfile="${sources}/${sources-filename}.zip">
             <zipfileset dir="src"
                         includes="**/*.java"
                         prefix="${sources-filename}" />
             <zipfileset dir="."
-			includes="../../LICENSE.txt"
+			includes="LICENSE.txt"
                         prefix="${sources-filename}" />
         </zip>
 
@@ -72,6 +76,8 @@
 
     <target name="clean" description="clean up">
         <delete dir="${tmp}" />
+        <delete dir="${lib}" />
+        <delete dir="${sources}" />
         <delete dir="${javadoc}" />
     </target>
 
