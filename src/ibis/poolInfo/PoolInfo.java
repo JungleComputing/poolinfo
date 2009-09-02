@@ -2,7 +2,7 @@
 
 package ibis.poolInfo;
 
-import ibis.ipl.server.Client;
+import ibis.ipl.support.Client;
 import ibis.smartsockets.direct.IPAddressSet;
 import ibis.smartsockets.virtual.VirtualSocket;
 import ibis.smartsockets.virtual.VirtualSocketAddress;
@@ -81,10 +81,12 @@ public class PoolInfo {
         
         logger.debug("Creating PoolInfo for " + localAddress + "@" + cluster);
 
-        VirtualSocketFactory factory = Client.getFactory(typedProperties);
-        VirtualSocketAddress serviceAddress = Client.getServiceAddress(
-                Service.VIRTUAL_PORT, typedProperties);
-
+        Client client = Client.getOrCreateClient("poolInfoClient", typedProperties,
+                0);
+        VirtualSocketFactory factory = client.getFactory();
+        VirtualSocketAddress serviceAddress = client.getServiceAddress(
+                Service.VIRTUAL_PORT);
+                
         VirtualSocket socket = factory.createClientSocket(serviceAddress, 
                 CONNECTION_TIMEOUT, true, null);
         

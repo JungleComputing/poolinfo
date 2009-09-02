@@ -11,15 +11,12 @@
     <property name="sources" location="sources" />
     <property name="sources-filename" value="poolinfo" />
 
-    <property environment="env" />
-    <property name="ipl" location="${env.IPL_HOME}" />
-
     <property name="version" value="-2.2" />
 
     <property name="jar" location="${lib}/${ant.project.name}${version}.jar" />
 
     <path id="external_jars">
-	<fileset dir="${ipl}/lib">
+	<fileset dir="external">
             <include name="*.jar" />
         </fileset>
     </path>
