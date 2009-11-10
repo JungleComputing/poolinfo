@@ -1,9 +1,9 @@
 package ibis.poolInfo;
 
-import ibis.util.TypedProperties;
-
+import ibis.ipl.IbisProperties;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Properties;
 
 public final class PoolInfoProperties {
     
@@ -30,8 +30,8 @@ public final class PoolInfoProperties {
     
     };
 
-    public static TypedProperties getHardcodedProperties() {
-        TypedProperties properties = new TypedProperties();
+    public static Properties getHardcodedProperties() {
+        Properties properties = IbisProperties.getHardcodedProperties();
 
         for (String[] element : propertiesList) {
             if (element[1] != null) {

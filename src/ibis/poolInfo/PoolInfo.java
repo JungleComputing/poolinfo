@@ -48,8 +48,8 @@ public class PoolInfo {
 
     public PoolInfo(Properties properties, boolean addSystemProperties)
             throws Exception {
-        TypedProperties typedProperties = PoolInfoProperties
-                .getHardcodedProperties();
+        TypedProperties typedProperties = new TypedProperties(PoolInfoProperties
+                .getHardcodedProperties());
 
         if (addSystemProperties) {
             typedProperties.addProperties(System.getProperties());
