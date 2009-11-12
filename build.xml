@@ -3,15 +3,15 @@
 	Build file for ibis-poolinfo
     </description>
 
+    <property name="version" value="-2.2" />
+
     <!-- Global properties -->
     <property name="src" location="src" />
     <property name="tmp" location="tmp" />
     <property name="lib" location="lib" />
     <property name="javadoc" location="javadoc" />
     <property name="sources" location="sources" />
-    <property name="sources-filename" value="poolinfo" />
-
-    <property name="version" value="-2.2" />
+    <property name="sources-filename" value="poolinfo${version}-sources" />
 
     <property name="jar" location="${lib}/${ant.project.name}${version}.jar" />
 
